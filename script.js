@@ -23,6 +23,7 @@ function randomCity(){
     return countryCapitals[x]
 }
 function getData(){
+    
     leftThirdValue.textContent = "--"
     rigthThirdValue.textContent ="--"
     let city1 = randomCity();
@@ -32,6 +33,8 @@ function getData(){
     
     Promise.all([firstCity,secondCity]).then(results =>{
         Promise.all([results[0].json(), results[1].json()]).then(res =>{
+            value1.style.backgroundColor ="rgba(13, 13, 71, 0.4)"
+            value2.style.backgroundColor ="rgba(13, 13, 71, 0.4)"
             leftFirstValue.textContent = city1.country
             leftSecondValue.textContent = res[0].name
             temp1 = res[0].main.temp
@@ -51,6 +54,7 @@ value1.addEventListener('click',function(){
     }
 
     if(temp1 > temp2){
+        value1.style.backgroundColor = "Green"
         resultValue.textContent ++
         if(resultValue.textContent == 5){
             setTimeout(function(){
@@ -60,7 +64,8 @@ value1.addEventListener('click',function(){
         }
     }
     if(temp1 < temp2){
-        resultValue.textContent --
+        value1.style.backgroundColor = "red"
+        resultValue.textContent --;
         if(resultValue.textContent ==-5){
             setTimeout(function(){
                 alert("you lose")
@@ -78,6 +83,7 @@ value2.addEventListener('click',function(){
         return;
     }
     if(temp2 > temp1){
+        value2.style.backgroundColor = "Green"
         resultValue.textContent ++
         if(resultValue.textContent == 5){
             setTimeout(function(){
@@ -87,6 +93,7 @@ value2.addEventListener('click',function(){
         }
     }
     if(temp2 < temp1){
+        value2.style.backgroundColor = "red"
         resultValue.textContent --
         if(resultValue.textContent == -5){
             setTimeout(function(){
